@@ -1,0 +1,43 @@
+.app{
+  height: 100vh;
+  display: grid;
+  grid-template-rows: minmax(40px,1fr) 13fr;
+  .appHeader{
+    padding: 0 15px;
+    height: 100%;
+    .navList{
+      list-style: none;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 10px 5px;
+      .navItem{
+        margin-right: 10px;
+        &:last-child{
+          margin-right: 0;
+        }
+        .navLink{
+          text-decoration: none;
+          color: #ff431c;
+          font-weight: 700;
+          position: relative;
+          &::after{
+            content:'';
+            display: block;
+            position: absolute;
+            top:100%;
+            left:0;
+            width: 100%;
+            height: 2.5px;
+            background-color: #ff431c;
+            transition: .2s;
+            opacity: 0;
+          }
+          &:hover::after{
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+}

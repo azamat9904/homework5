@@ -1,0 +1,21 @@
+.postDetailContainer{
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .postDetail{
+    width: 300px;
+    min-height: 300px;
+    border:1px solid rgba(0,0,0,.1);
+    padding: 15px;
+    box-shadow: 0 0 5px 2px rgba(0,0,0,.1);
+    .postTitle{
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .postDetailButton{
+      margin-top:20px;
+      width: 100%;
+    }
+  }
+}
