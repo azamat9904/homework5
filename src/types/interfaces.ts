@@ -1,3 +1,4 @@
+//Post Interface
 export interface IPost {
     userId: number;
     id: number;
@@ -5,6 +6,8 @@ export interface IPost {
     body: string;
 }
 
+
+//Loader interface
 type LoaderTypes =
     | 'Audio'
     | 'BallTriangle'
@@ -35,6 +38,7 @@ export interface ILoader {
 }
 
 
+//Button interface
 type ButtonTypes =
     |'button'
     |'submit'
@@ -47,3 +51,25 @@ export interface IButton {
     type?:ButtonTypes;
     text:string
 }
+
+//Input Interface
+type InputTypes =
+    | 'text'
+    | 'checkbox'
+    | 'email'
+    | 'password';
+
+
+export interface IInput {
+    type:InputTypes;
+    onHandler?:(value:string)=>void;
+    className?:string,
+    placeholder?:string;
+}
+
+export interface IInputError {
+    isEmpty?:boolean;
+    isInvalid?:boolean;
+}
+
+

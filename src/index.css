@@ -39,3 +39,25 @@ code {
 .Button:hover{
   background-color: #365be5;
 }
+
+/* Input styles */
+.inputContainer{
+  width: 100%;
+}
+.input{
+  width: 100%;
+  padding: 8px 15px;
+  border-radius: 5px;
+  border:1px solid rgba(0,0,0,.2);
+}
+.input:focus{
+  box-shadow: 0 0 2px 1px #4c76ff;
+}
+.inputErrors{
+  height: 12px;
+  font-size: 13px;
+  line-height: 1;
+  color:red;
+  font-weight: 600;
+  padding:0 5px;
+}

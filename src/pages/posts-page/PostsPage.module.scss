@@ -4,7 +4,8 @@
   justify-content: center;
   align-items: center;
   .posts{
-    width: 60%;
+    width: 100%;
+    max-width: 800px;
     height:80vh;
     margin:auto;
     overflow-y: auto;

@@ -1,0 +1,23 @@
+.homePageContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  .homePageForm{
+    width: 100%;
+    max-width: 300px;
+    height: 100%;
+    margin:0 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  .homePageButton{
+    width: 100%;
+    margin-top:8px;
+  }
+  .topSpace{
+    margin-top:10px;
+  }
+}
