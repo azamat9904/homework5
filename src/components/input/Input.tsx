@@ -1,22 +1,34 @@
 import React, {useEffect, useState} from 'react';
 import {IInput,IInputError} from "../../types/interfaces";
+import Emoji from "../emoji/emoji";
+const Input:React.FunctionComponent<IInput> = (
+    {type,
+        onHandler,
+        className,
+        placeholder,
+        required,
+        value,
+        emojiRequired,
+    })=>{
 
-const Input:React.FunctionComponent<IInput> = ({type,onHandler,className,placeholder})=>{
-
-    const [inputValue,setInputValue] = useState<string>('');
     const [errors,setErrors] = useState<IInputError>({isEmpty:false,isInvalid:false});
     const [touched,setTouched] = useState<boolean>(false);
+    const [showEmojiPicker,setShowEmojiPicker] = useState<boolean>();
 
     const inputHandler = (value:string)=>{
-        setInputValue(value);
-        if(onHandler) onHandler(value);
+        onHandler(value);
+    };
+
+    const emojiHandler = (show:boolean)=>{
+        console.log(show);
+       setShowEmojiPicker(show);
     };
 
     useEffect(()=>{
         setTouched(true);
         if(!touched)return;
 
-        if(!inputValue){
+        if(required && !value){
             setErrors({
                 isEmpty:true,
                 isInvalid:false
@@ -24,7 +36,7 @@ const Input:React.FunctionComponent<IInput> = ({type,onHandler,className,placeho
             return;
         }
 
-        if(inputValue.match(/\s/g)){
+        if(required && value.match(/\s/g)){
             setErrors({
                 isEmpty:false,
                 isInvalid:true
@@ -37,11 +49,17 @@ const Input:React.FunctionComponent<IInput> = ({type,onHandler,className,placeho
             isInvalid:false
         });
 
-    },[inputValue]);
+    },[value]);
 
     return (
         <div className='inputContainer'>
-            <input type={type} value = {inputValue} onChange = {(event)=>inputHandler(event.target.value)} className={'input ' + className} placeholder={placeholder}/>
+            <input
+                type={type}
+                value = {value}
+                onChange = {(event)=>inputHandler(event.target.value)}
+                className={'input ' + className}
+                placeholder={placeholder}
+            />
             { errors.isEmpty || errors.isInvalid ?
                 <div className="inputErrors">
                     {
@@ -50,6 +68,21 @@ const Input:React.FunctionComponent<IInput> = ({type,onHandler,className,placeho
                     }
                 </div>
                 :''
+            }
+            {
+                emojiRequired &&
+                <span className="emoji">
+                    <img
+                        src="./emoji.png"
+                        alt="emoji"
+                        className="emojiIcon"
+                        onMouseEnter={()=>emojiHandler(true)}
+                        onMouseLeave = {()=>emojiHandler(false)}
+                    />
+                </span>
+            }
+            {
+                showEmojiPicker && <Emoji />
             }
         </div>
     )

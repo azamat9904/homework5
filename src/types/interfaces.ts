@@ -62,9 +62,12 @@ type InputTypes =
 
 export interface IInput {
     type:InputTypes;
-    onHandler?:(value:string)=>void;
+    onHandler:(value:string)=>void;
     className?:string,
     placeholder?:string;
+    required?:boolean,
+    value:string,
+    emojiRequired?:boolean,
 }
 
 export interface IInputError {
@@ -72,4 +75,36 @@ export interface IInputError {
     isInvalid?:boolean;
 }
 
+//Websocket Interface
+export interface IWebsocketConfig {
+    url: string;
+    room: string;
+    userId: string;
+    reconnect: boolean,
+}
 
+//Message Interface
+export interface IMessageInfo {
+    roomId:string;
+    text:string;
+    time:string;
+    userId:string
+}
+
+//Youtuve interface
+type playerVars = {
+    autoplay?:1 | 0;
+    color?:'red' | 'white';
+    controls?:0 | 1 | 2;
+    disablekb?:0 | 1;
+    enablejsapi?: 0 | 1;
+    fs?:0 | 1;
+}
+export interface IYoutube {
+    videoId:string;
+    opts:{
+        height:string,
+        width: string,
+        playerVars?:playerVars
+    }
+}

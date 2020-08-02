@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+// @ts-ignore
 import s from './PostDetailPage.module.scss';
 import {postsApi} from "../../services/api";
 import {IPost} from "../../types/interfaces";

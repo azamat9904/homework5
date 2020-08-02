@@ -43,6 +43,7 @@ code {
 /* Input styles */
 .inputContainer{
   width: 100%;
+  position: relative;
 }
 .input{
   width: 100%;
@@ -60,4 +61,30 @@ code {
   color:red;
   font-weight: 600;
   padding:0 5px;
+}
+.emoji{
+  position: absolute;
+  top:50%;
+  right:10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+}
+.emojiIcon{
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: .2s;
+}
+.emojiIcon:hover{
+  background-color: #f0f0f0;
+  border-radius: 50%;
+}
+.emojiPicker{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 120%;
+  height: 120%;
 }
