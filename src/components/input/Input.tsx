@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {MutableRefObject, useEffect, useState} from 'react';
 import {IInput,IInputError} from "../../types/interfaces";
 import Emoji from "../emoji/emoji";
+import {BaseEmoji} from "emoji-mart";
 const Input:React.FunctionComponent<IInput> = (
     {type,
         onHandler,
@@ -9,19 +10,19 @@ const Input:React.FunctionComponent<IInput> = (
         required,
         value,
         emojiRequired,
+        getEmojiHandler
     })=>{
 
     const [errors,setErrors] = useState<IInputError>({isEmpty:false,isInvalid:false});
     const [touched,setTouched] = useState<boolean>(false);
     const [showEmojiPicker,setShowEmojiPicker] = useState<boolean>();
 
-    const inputHandler = (value:string)=>{
-        onHandler(value);
+    const showEmojiPickerHandler = ()=>{
+        setShowEmojiPicker(!showEmojiPicker);
     };
 
-    const emojiHandler = (show:boolean)=>{
-        console.log(show);
-       setShowEmojiPicker(show);
+    const inputHandler = (value:string)=>{
+        onHandler(value);
     };
 
     useEffect(()=>{
@@ -76,13 +77,12 @@ const Input:React.FunctionComponent<IInput> = (
                         src="./emoji.png"
                         alt="emoji"
                         className="emojiIcon"
-                        onMouseEnter={()=>emojiHandler(true)}
-                        onMouseLeave = {()=>emojiHandler(false)}
+                        onClick = {()=>showEmojiPickerHandler()}
                     />
                 </span>
             }
             {
-                showEmojiPicker && <Emoji />
+                showEmojiPicker && <Emoji getEmojiHandler={getEmojiHandler}/>
             }
         </div>
     )

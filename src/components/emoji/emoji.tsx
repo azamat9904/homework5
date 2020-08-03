@@ -1,14 +1,16 @@
-import React from 'react';
-import Picker, {IEmojiData, SKIN_TONE_MEDIUM_DARK} from 'emoji-picker-react';
+import React, {MutableRefObject, useRef} from 'react';
+import 'emoji-mart/css/emoji-mart.css';
+import {BaseEmoji, Picker} from 'emoji-mart';
 
-const Emoji = ()=>{
-    const onEmojiClick = (event:Event, emojiObject:IEmojiData) => {
-        console.log(emojiObject);
+const Emoji = ({getEmojiHandler}:{getEmojiHandler?:(emoji:BaseEmoji)=>void})=>{
+    const ref = useRef(null);
+    const addEmoji = (emoji:BaseEmoji)=>{
+        getEmojiHandler?.(emoji);
     };
 
     return (
-        <div>
-            <Picker onEmojiClick={onEmojiClick} disableAutoFocus={true}/>
+        <div className = "emojiPicker" ref = {ref}>
+            <Picker set='apple' title='Pick your emoji…' emoji='point_up' onSelect={addEmoji}/>
         </div>
     )
 };

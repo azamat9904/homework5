@@ -1,4 +1,4 @@
-import React, {FormEvent, useEffect, useState} from 'react';
+import React, {FormEvent, MutableRefObject, useEffect, useState} from 'react';
 // @ts-ignore
 import s from './ChatPage.module.scss';
 import {useWebSocket} from "../../services/chat";
@@ -9,17 +9,17 @@ import Button from "../../components/button/Button";
 import {useDispatch, useSelector} from "react-redux";
 import {IChatState} from "../../redux/chatReducer/chatStateTypes";
 import {sendMessageActionCreator} from "../../redux/chatReducer/chatActonCreator";
+import {BaseEmoji} from "emoji-mart";
 
 interface chatState {
     chatList:IChatState
-};
+}
 
 const ChatPage = ()=>{
     const [inputValue,setInputValue] = useState<string>('');
-    const [showEmoji,setShowEmji] = useState<boolean>(false);
 
-    const emojiHandler = (show:boolean)=>{
-        setShowEmji(show);
+    const getEmojiHandler = (emoji:BaseEmoji)=>{
+        setInputValue(inputValue + emoji.native);
     };
 
     const selectChatState = (state:chatState)=>{
@@ -64,6 +64,7 @@ const ChatPage = ()=>{
                     required={false}
                     value = {inputValue}
                     emojiRequired={true}
+                    getEmojiHandler={getEmojiHandler}
                 />
                 <Button type = "button" text="Send" className={s.chatBtn}/>
             </form>

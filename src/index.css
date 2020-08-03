@@ -83,8 +83,17 @@ code {
 }
 .emojiPicker{
   position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 120%;
-  height: 120%;
+  bottom: 30px;
+  right: -50%;
+  z-index: 1000;
 }
+/*.emojiPicker::after{*/
+/*  content:'';*/
+/*  display: block;*/
+/*  position: absolute;*/
+/*  top:100%;*/
+/*  left:50%;*/
+/*  border-width: 13px;*/
+/*  border-style: solid;*/
+/*  border-color: black transparent transparent transparent;*/
+/*}*/

@@ -1,4 +1,8 @@
 //Post Interface
+import {Emoji} from "emoji-mart/dist-es/utils/data";
+import {BaseEmoji, EmojiData} from "emoji-mart";
+import {MutableRefObject} from "react";
+
 export interface IPost {
     userId: number;
     id: number;
@@ -68,6 +72,7 @@ export interface IInput {
     required?:boolean,
     value:string,
     emojiRequired?:boolean,
+    getEmojiHandler?:(emoji:BaseEmoji)=>void;
 }
 
 export interface IInputError {
@@ -91,7 +96,7 @@ export interface IMessageInfo {
     userId:string
 }
 
-//Youtuve interface
+//Youtube interface
 type playerVars = {
     autoplay?:1 | 0;
     color?:'red' | 'white';
@@ -107,4 +112,15 @@ export interface IYoutube {
         width: string,
         playerVars?:playerVars
     }
+}
+
+
+// Emoji type
+export interface IEmoji {
+    colons:string;
+    emoticonst:[];
+    id:string;
+    name:string;
+    native:string;
+
 }
