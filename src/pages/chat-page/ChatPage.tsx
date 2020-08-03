@@ -66,7 +66,7 @@ const ChatPage = ()=>{
                     emojiRequired={true}
                     getEmojiHandler={getEmojiHandler}
                 />
-                <Button type = "button" text="Send" className={s.chatBtn}/>
+                <Button type = "submit" text="Send" className={s.chatBtn}/>
             </form>
         </div>
     )
