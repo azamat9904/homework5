@@ -1,8 +1,7 @@
-//Post Interface
-import {Emoji} from "emoji-mart/dist-es/utils/data";
 import {BaseEmoji, EmojiData} from "emoji-mart";
-import {MutableRefObject} from "react";
 
+
+//Post Interface
 export interface IPost {
     userId: number;
     id: number;
@@ -122,5 +121,14 @@ export interface IEmoji {
     id:string;
     name:string;
     native:string;
+}
 
+export interface UserInfo {
+    firstname: string;
+    lastname?: string;
+}
+
+export interface Video {
+    id: string;
+    title: string;
 }

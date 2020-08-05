@@ -1,72 +1,70 @@
-import React, {FormEvent, MutableRefObject, useEffect, useState} from 'react';
+import React, {FormEvent, MutableRefObject, useEffect, useReducer, useState} from 'react';
 // @ts-ignore
 import s from './ChatPage.module.scss';
-import {useWebSocket} from "../../services/chat";
+import {chatStateReducer, useWebSocket} from "../../services/chat";
 import Input from "../../components/input/Input";
 import ChatWindow from "./chat-window/ChatWindow";
 import {IMessageInfo} from "../../types/interfaces";
 import Button from "../../components/button/Button";
-import {useDispatch, useSelector} from "react-redux";
-import {IChatState} from "../../redux/chatReducer/chatStateTypes";
-import {sendMessageActionCreator} from "../../redux/chatReducer/chatActonCreator";
 import {BaseEmoji} from "emoji-mart";
+import {ChatActions} from "../../services/chat";
+import {UserInfo} from "../../types/interfaces";
 
-interface chatState {
-    chatList:IChatState
+type Props = {
+    user?: UserInfo | null;
 }
 
-const ChatPage = ()=>{
-    const [inputValue,setInputValue] = useState<string>('');
+const ChatPage:React.FunctionComponent<Props> = ({user}) => {
+    const [state, dispatch] = useReducer(chatStateReducer, {messages: []});
 
-    const getEmojiHandler = (emoji:BaseEmoji)=>{
+    const [inputValue, setInputValue] = useState<string>('');
+
+    const webSocket = useWebSocket({
+        userId: user?.firstname
+    });
+
+    const getEmojiHandler = (emoji: BaseEmoji) => {
         setInputValue(inputValue + emoji.native);
     };
 
-    const selectChatState = (state:chatState)=>{
-        return state.chatList;
-    };
-
-    const dispatch = useDispatch();
-
-    const chatState = useSelector(selectChatState);
-
-    const webSocket = useWebSocket({
-        userId:'Azamat'
-    });
-
-    const onMessage = ({data}:{data:IMessageInfo})=>{
-        setInputValue('');
-        dispatch(sendMessageActionCreator(data));
-    };
-
-    const submitHandler = (e:FormEvent)=>{
+    const submitHandler = (e: FormEvent) => {
         e.preventDefault();
+        setInputValue('');
         webSocket.sendMessage(inputValue);
     };
 
-    useEffect(()=>{
-        webSocket.eventEmitter.on('message',onMessage);
-        return ()=>{
-            webSocket.eventEmitter.off('message',onMessage);
+
+    const onMessage = ({data}: { data: IMessageInfo }) => {
+        dispatch({
+            type: ChatActions.ADD_MESSAGE,
+            payload: data,
+        })
+    };
+
+    useEffect(() => {
+        webSocket.open();
+        webSocket.eventEmitter.on('message', onMessage);
+        return () => {
+            webSocket.eventEmitter.off('message', onMessage);
             webSocket.close();
         }
-    },[]);
+    }, []);
 
 
     return (
         <div className={s.chatPage}>
-            <ChatWindow messages = {chatState.messages} className={s.chatPageWindow}/>
+            <ChatWindow messages={state.messages} className={s.chatPageWindow}/>
             <form onSubmit={submitHandler} className={s.chatPageForm}>
                 <Input
                     type="text"
                     placeholder="Enter your text"
-                    onHandler={(value)=>setInputValue(value)}
+                    onHandler={(value) => setInputValue(value)}
                     required={false}
-                    value = {inputValue}
+                    value={inputValue}
                     emojiRequired={true}
                     getEmojiHandler={getEmojiHandler}
                 />
-                <Button type = "submit" text="Send" className={s.chatBtn}/>
+                <Button type="submit" text="Send" className={s.chatBtn}/>
             </form>
         </div>
     )

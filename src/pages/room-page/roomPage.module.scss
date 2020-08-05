@@ -1,9 +1,14 @@
 .roomPage{
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  height: 100%;
-  .roomWrapper{
-    padding: 15px;
+  flex-direction: column;
+  .roomPageContainer{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    height: 100%;
+    .roomWrapper{
+      padding: 15px;
+    }
   }
 }

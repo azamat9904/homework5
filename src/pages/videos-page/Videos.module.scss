@@ -1,0 +1,16 @@
+.Videos {
+  display: flex;
+  flex-flow: row wrap;
+
+  .videoItem {
+    font-size: 1.25rem;
+    font-weight: 600;
+    padding: 1rem;
+    text-decoration: none;
+
+    a {
+      text-decoration: none;
+      color: #e91e63;
+    }
+  }
+}

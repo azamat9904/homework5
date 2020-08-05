@@ -1,15 +1,17 @@
-import {IWebsocketConfig} from "../types/interfaces";
+import React from 'react';
+import {IMessageInfo, IWebsocketConfig} from "../types/interfaces";
 import {EventEmitter} from "events";
 import {useEffect, useState} from "react";
 
 class SocketClient {
     private static instance:SocketClient | undefined;
     private reconnectTimeout:any;
-    public webSocket:WebSocket | undefined;
-    public eventEmitter = new EventEmitter();
+
+    webSocket:WebSocket | undefined;
+    eventEmitter = new EventEmitter();
 
     constructor(private config:IWebsocketConfig) {
-        this.init(config);
+        this.init();
     }
 
     static getInstance(config:IWebsocketConfig){
@@ -17,8 +19,8 @@ class SocketClient {
         return this.instance;
     }
 
-    init(config:IWebsocketConfig){
-        this.webSocket = new WebSocket(`${config.url}?room=${config.room}&userId=${config.userId}`);
+    init(){
+        this.webSocket = new WebSocket(`${this.config.url}?room=${this.config.room}&userId=${this.config.userId}`);
         this.webSocket.addEventListener('open',()=>this.onOpen());
         this.webSocket.addEventListener('close',()=>this.onClose());
         this.webSocket.addEventListener('message',(e)=>this.onMessage(e));
@@ -30,10 +32,10 @@ class SocketClient {
     }
 
     onClose(){
-        console.log('WEBSOCKET ClOSED   ');
+        console.log('WEBSOCKET ClOSED');
         if(this.config.reconnect){
             this.reconnectTimeout = setTimeout(()=>
-                this.init(this.config),5000);
+                this.init(),5000);
         }
     }
 
@@ -53,13 +55,19 @@ class SocketClient {
         this.config.reconnect = false;
         this.webSocket?.close();
     }
+
+    open(){
+        if(this.webSocket?.readyState === WebSocket.CLOSED){
+            this.init();
+        }
+    }
 }
 
 const defaultConfig:IWebsocketConfig = {
-    userId:'Azamat',
-    url: 'ws://zaaz-live.dar-dev.zone',
-    room:'DAR123',
-    reconnect:true
+    url: 'wss://zaaz-live.dar-dev.zone',
+    reconnect: true,
+    userId: 'Azamat',
+    room: 'DAR123',
 };
 
 export const useWebSocket = (externalConfig:Partial<IWebsocketConfig>)=>{
@@ -68,7 +76,31 @@ export const useWebSocket = (externalConfig:Partial<IWebsocketConfig>)=>{
 
     useEffect(()=>{
         setWebSocketInstance(SocketClient.getInstance(config));
-    },[webSocketInstance?.webSocket?.readyState]);
+    },[webSocketInstance?.webSocket]);
 
     return webSocketInstance;
+};
+
+
+
+export enum ChatActions {
+    ADD_MESSAGE = 'ADD_MESSAGE',
+}
+
+export interface ChatState {
+    messages: IMessageInfo[]
+}
+
+export const chatStateReducer = (state: ChatState, action: {type: ChatActions, payload: any}) => {
+    switch(action.type) {
+        case ChatActions.ADD_MESSAGE: {
+            return {
+                ...state,
+                messages: [...state.messages, action.payload]
+            }
+        }
+        default:
+            return state;
+    }
+
 };

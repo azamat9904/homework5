@@ -74,7 +74,7 @@ const Input:React.FunctionComponent<IInput> = (
                 emojiRequired &&
                 <span className="emoji">
                     <img
-                        src="./emoji.png"
+                        src="/emoji.png"
                         alt="emoji"
                         className="emojiIcon"
                         onClick = {()=>showEmojiPickerHandler()}

@@ -8,7 +8,7 @@ const Emoji = ({getEmojiHandler}:{getEmojiHandler?:(emoji:BaseEmoji)=>void})=>{
     };
 
     return (
-        <div className = "emojiPicker">
+        <div className = "emojiPicker"  >
             <Picker set='apple' title='Pick your emoji…' emoji='point_up' onSelect={addEmoji}/>
         </div>
     )
