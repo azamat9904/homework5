@@ -1,7 +1,9 @@
 .Videos {
   display: flex;
   flex-flow: row wrap;
-
+  justify-content: center;
+  align-items: center;
+  height: 100%;
   .videoItem {
     font-size: 1.25rem;
     font-weight: 600;
