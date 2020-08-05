@@ -20,14 +20,20 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../dar-summer-frontend" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public" />
     <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="C:\Users\Азамат\Desktop\homework4\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Азамат\Desktop\homework4\public" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Азамат\Desktop\homework4\src\redux\chatReducer" />
     </key>
@@ -62,6 +68,7 @@
       <workItem from="1596432050343" duration="6585000" />
       <workItem from="1596460352230" duration="1435000" />
       <workItem from="1596637442132" duration="7198000" />
+      <workItem from="1596647990606" duration="4925000" />
     </task>
     <servers />
   </component>
@@ -69,10 +76,18 @@
     <option name="version" value="1" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="361" y="70" key="#ESLint" timestamp="1596645236889">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="70" key="#ESLint/0.0.1536.824@0.0.1536.824" timestamp="1596645236889" />
     <state x="525" y="215" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1596221818087">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="525" y="215" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1596221818087" />
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1596648185637">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1596648185637" />
     <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1596640944501">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

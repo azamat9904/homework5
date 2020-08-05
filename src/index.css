@@ -87,13 +87,4 @@ code {
   right: -50%;
   z-index: 1000;
 }
-/*.emojiPicker::after{*/
-/*  content:'';*/
-/*  display: block;*/
-/*  position: absolute;*/
-/*  top:100%;*/
-/*  left:50%;*/
-/*  border-width: 13px;*/
-/*  border-style: solid;*/
-/*  border-color: black transparent transparent transparent;*/
-/*}*/
+

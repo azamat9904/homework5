@@ -52,7 +52,8 @@ export interface IButton {
     className?:string;
     onHandler?:()=>void;
     type?:ButtonTypes;
-    text:string
+    text?:string;
+    withChildren?:boolean;
 }
 
 //Input Interface
